@@ -8,7 +8,7 @@ new_window "editor"
 run_cmd "nvim ."
 
 # Split window into panes.
-split_v 80
+split_v 20
 run_cmd "npm start"
 
 split_h 50

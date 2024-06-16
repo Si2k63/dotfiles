@@ -1,4 +1,3 @@
-alias t='tmuxifier load-session editor'
-alias mux='tmuxifier'
-alias v='nvim'
+alias v='tmuxifier load-session editor'
+alias tmi='tmuxifier'
 alias vim='nvim'

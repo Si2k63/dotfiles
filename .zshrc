@@ -108,5 +108,9 @@ export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
 eval "$(tmuxifier init -)"
 export EDITOR=/usr/bin/nvim
 
+export FZF_ALT_C_COMMAND='find . \( -type d \( -name ".git" -o -name "node_modules" -o -name "vendor" \) -prune \) -o -type d -print'
+
 [ -f ~/.dotfiles/.fzf.zsh ] && source ~/.dotfiles/.fzf.zsh
 [ -f ~/.dotfiles/.aliases ] && source ~/.dotfiles/.aliases
+
+cd ~/Projects

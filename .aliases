@@ -1,3 +1,4 @@
 alias v='tmuxifier load-session editor'
 alias tmi='tmuxifier'
 alias vim='nvim'
+alias pr='cd ~/Projects && cd $(find . \( -type d \( -name ".git" -o -name "node_modules" -o -name "vendor" \) -prune \) -o -type d -print | fzf --ansi --preview="ls -lah {}")'

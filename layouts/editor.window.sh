@@ -10,3 +10,4 @@ split_v 15
 split_h 50
 run_cmd "gst"
 select_pane 2
+run_cmd "package_json_script_selector.sh"

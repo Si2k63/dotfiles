@@ -1,0 +1,15 @@
+[core]
+  hooksPath = ~/dotfiles/githooks/
+	pager = batcat
+	filemode = false
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[safe]
+	directory = *
+[init]
+	defaultBranch = main
+[user]
+	email = poc_is_good@hotmail.com
+	name = Simon Phillips

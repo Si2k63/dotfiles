@@ -1,0 +1,6 @@
+alias tm='~/dotfiles/scripts/tmux_session_manager.sh'
+alias tn='~/dotfiles/scripts/tmux_session_manager.sh --editor'
+
+alias v='nvim'
+alias vim='nvim'
+alias pub='cat ~/.ssh/id_ed25519.pub'

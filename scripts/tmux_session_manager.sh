@@ -10,7 +10,7 @@ main() {
     local site_directory="/home/$USER/Projects"
     
     if [ -n "$SSH_CONNECTION" ]; then
-        if [ -d "$site" ]; then
+        if [ -d "/home/sites" ]; then
             site_directory="/home/sites"
         else
             site_directory="/var/www"

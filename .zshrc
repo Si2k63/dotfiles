@@ -1,5 +1,7 @@
 export ZSH=~/.oh-my-zsh
 
+export EDITOR=nvim
+
 export PATH=~/.composer/vendor/bin:$PATH
 export PATH="$PATH:/usr/cli-tool/"
 export PATH="$PATH:/opt/nvim-linux64/bin"

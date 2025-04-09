@@ -18,13 +18,14 @@ main() {
     fi
 
     selected_dir=$(fzf  --ansi --preview="ls -lah {}" < <(
-    find -L "$site_directory" -mindepth 5 -maxdepth 5 -type d -path "*/web/wp-content/themes/gs-theme"
+    find -L "$site_directory" -mindepth 5 -maxdepth 5 -type d -path "*/web/wp-content/themes/gs-theme" &&
     find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "*/web" &&
     find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "*/log" &&
     find -L "$site_directory" -mindepth 4 -maxdepth 4 -type d -path "*/web/wp-content/plugins" &&
     find -L "$site_directory" -mindepth 5 -maxdepth 5 -type d -path "*/web/wp-content/plugins/accommodation" &&
     find -L "$site_directory" -mindepth 1 -maxdepth 1 -type d -path "*" &&
-    find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "/src"
+    find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "/src" &&
+    echo "/home/$USER/dotfiles"
     ))
 
     # Check if a directory was selected and if it exists

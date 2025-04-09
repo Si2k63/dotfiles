@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ ! -f package.json ]; then
+    exit 1
+fi
+
 
 SELECTED_SCRIPT=$(jq -r '.scripts | to_entries | .[] | .key' package.json | fzf --prompt="Select script: ")
 

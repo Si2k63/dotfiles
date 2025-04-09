@@ -1,8 +1,11 @@
 export ZSH=~/.oh-my-zsh
+
 export PATH=~/.composer/vendor/bin:$PATH
 export PATH="$PATH:/usr/cli-tool/"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
+export PATH="$PATH:$HOME/dotfiles/scripts"
+
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 
 ZSH_THEME="gentoo"
@@ -15,7 +18,6 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
 
 autoload -U add-zsh-hook
 

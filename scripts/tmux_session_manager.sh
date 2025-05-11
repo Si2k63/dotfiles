@@ -9,22 +9,9 @@ done
 main() {
     local site_directory="/home/$USER/Projects"
     
-    if [ -n "$SSH_CONNECTION" ]; then
-        if [ -d "/home/sites" ]; then
-            site_directory="/home/sites"
-        else
-            site_directory="/var/www"
-        fi
-    fi
 
     selected_dir=$(fzf  --ansi --preview="ls -lah {}" < <(
-    find -L "$site_directory" -mindepth 5 -maxdepth 5 -type d -path "*/web/wp-content/themes/gs-theme" &&
-    find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "*/web" &&
-    find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "*/log" &&
-    find -L "$site_directory" -mindepth 4 -maxdepth 4 -type d -path "*/web/wp-content/plugins" &&
-    find -L "$site_directory" -mindepth 5 -maxdepth 5 -type d -path "*/web/wp-content/plugins/accommodation" &&
-    find -L "$site_directory" -mindepth 1 -maxdepth 1 -type d -path "*" &&
-    find -L "$site_directory" -mindepth 2 -maxdepth 2 -type d -path "/src" &&
+    find -L "$site_directory" -mindepth 1 -maxdepth 1  &&
     echo "/home/$USER/dotfiles"
     ))
 

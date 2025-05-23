@@ -8,16 +8,17 @@ done
 
 main() {
     local site_directory="/home/$USER/Projects"
-    
-
-    selected_dir=$(fzf  --ansi --preview="ls -lah {}" < <(
+    selected_dir=$(fzf --style full \
+    --padding 1,2 \
+    --color 'border:#aaaaaa,label:#cccccc' \
+    --color 'list-border:#00AACC,list-label:#99cc99' \
+    --color 'input-border:#00CCAA,input-label:#ffcccc' \
+    --color 'header-border:#6699cc,header-label:#ffffff' < <(
     find -L "$site_directory" -mindepth 1 -maxdepth 1  &&
     echo "/home/$USER/dotfiles"
     ))
 
-    # Check if a directory was selected and if it exists
     if [[ -n $selected_dir && -d $selected_dir ]]; then
-        # Change directory to the selected directory
         cd "$selected_dir"
         initialise_tmux
     fi

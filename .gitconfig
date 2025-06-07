@@ -10,6 +10,5 @@
 	directory = *
 [init]
 	defaultBranch = main
-[user]
-	email = poc_is_good@hotmail.com
-	name = Simon Phillips
+[include]
+    path = ~/.gitconfig.local

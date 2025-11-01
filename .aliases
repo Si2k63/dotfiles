@@ -6,3 +6,5 @@ alias vim='nvim'
 alias pub='cat ~/.ssh/id_ed25519.pub'
 alias e='tmuxifier load-window editor'
 alias c='batcat'
+
+alias aliases='grep "alias" ~/.aliases | sed "s/alias //g" | sort'

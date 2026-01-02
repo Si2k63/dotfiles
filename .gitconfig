@@ -4,6 +4,7 @@
 	filemode = false
 [push]
 	autoSetupRemote = true
+	default = current
 [pull]
 	rebase = true
 [safe]

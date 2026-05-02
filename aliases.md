@@ -8,7 +8,9 @@
 | `vim` | `nvim` | Open Neovim (overrides system vim) |
 | `nvim` | `nvm use 24 && nvim` | Switch to Node 24 then open Neovim |
 | `tm` | `~/dotfiles/scripts/tmux_session_manager.sh` | Launch the tmux session manager script |
+| `tn` | `~/dotfiles/scripts/tmux_session_manager.sh --editor` | Launch tmux session manager in editor mode |
 | `e` | `tmuxifier load-window editor` | Load the tmuxifier editor window layout |
+| `aliases` | `vim ~/dotfiles/aliases.md` | Open this aliases reference file in Neovim |
 
 ## WordPress
 
@@ -29,4 +31,14 @@
 | ----- | ----------- |
 | `pub` | Print the public SSH key (`~/.ssh/id_ed25519.pub`) |
 | `c` | `batcat` — syntax-highlighted `cat` replacement |
-| `aliases` | Print this aliases reference file |
+| `rl` | Reload shell config (`source ~/.zshrc`) |
+
+## Node / npm
+
+| Alias | Command | Description |
+| ----- | ------- | ----------- |
+| `ni` | `npm install` | Install dependencies |
+| `nrw` | `npm run watch` | Run the watch script |
+| `nrd` | `npm run dev` | Run the dev script |
+| `nrb` | `npm run build` | Run the build script |
+| `nrt` | `npm run test` | Run the test script |

@@ -79,6 +79,12 @@ alias g='th'
 
 alias pub='cat ~/.ssh/id_ed25519.pub'
 alias c='batcat'
+alias nrw='npm run watch'
+alias ni='npm install'
+alias nrd='npm run dev'
+alias nrb='npm run build'
+alias nrt='npm run test'
+alias rl='source ~/.zshrc'
 
 sat() {
     local base; base=$(wproot) || return 1

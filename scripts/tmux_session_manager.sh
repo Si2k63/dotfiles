@@ -16,6 +16,7 @@ main() {
     find -L "/var/www" -mindepth 1 -maxdepth 1 2>/dev/null
     find -L "/home/sites" -mindepth 1 -maxdepth 1 2>/dev/null
     echo "/home/$USER/dotfiles"
+    echo "/home/$USER/.config/nvim"
   )
 
   # Pipe the variable into fzf

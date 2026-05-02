@@ -1,10 +1,98 @@
 alias tm='~/dotfiles/scripts/tmux_session_manager.sh'
-alias tn='~/dotfiles/scripts/tmux_session_manager.sh --editor'
 
-alias v='nvim'
-alias vim='nvim'
+alias v='nvm use 24 && nvim'
+alias vim='nvm use 24 && nvim'
+alias nvim='nvm use 24 && nvim'
 alias pub='cat ~/.ssh/id_ed25519.pub'
 alias e='tmuxifier load-window editor'
 alias c='batcat'
 
 alias aliases='grep "alias" ~/.aliases | sed "s/alias //g" | sort'
+
+alias db1='wp config set WP_DEBUG 1 && wp config set WP_DEBUG_DISPLAY 1'
+alias db0='wp config set WP_DEBUG 0 && wp config set WP_DEBUG_DISPLAY 0'
+
+# navigation
+wproot() {
+    local cur_path=$(pwd)
+    if [[ "$cur_path" =~ ^(/var/www/|/home/sites/)[^/]+ ]]; then
+        echo "$cur_path" | cut -d'/' -f1-4
+    else
+        return 1
+    fi
+}
+
+get_theme_path() {
+    local base; base=$(wproot) || return 1
+    local themes="$base/web/wp-content/themes"
+
+    # Try fast path first
+    if [[ -d "$themes/gs-theme" ]]; then
+        echo "$themes/gs-theme"
+    else
+        # Fallback to DB
+        local active=$(wp option get template --path="$base/web/wp" 2>/dev/null | tr -d '[:space:]')
+        if [[ -n "$active" && -d "$themes/$active" ]]; then
+            echo "$themes/$active"
+        else
+            return 1
+        fi
+    fi
+}
+
+# The th function now just uses the helper
+th() {
+    local target; target=$(get_theme_path)
+    if [[ -n "$target" ]]; then
+        cd "$target"
+    else
+        echo "Theme directory not found."
+        return 1
+    fi
+}
+
+wb() {
+    local root; root=$(wproot)
+    if [[ -d "$root/web" ]]; then cd "$root/web"; else echo "Web directory not found"; fi
+}
+
+lg() {
+    local root; root=$(wproot)
+    if [[ -d "$root/log" ]]; then cd "$root/log"; else echo "Log directory not found"; fi
+}
+
+a() {
+    local root; root=$(wproot)
+    local target="$root/web/wp-content/plugins/accommodation"
+    if [[ -d "$target" ]]; then cd "$target"; else echo "Accommodation plugin not found"; fi
+}
+
+s() {
+    local root; root=$(wproot)
+    local target="$root/web/wp-content/plugins/supercontrol"
+    if [[ -d "$target" ]]; then cd "$target"; else echo "Supercontrol plugin not found"; fi
+}
+
+sat() {
+    local base; base=$(wproot) || return 1
+    local htaccess="$base/web/.htaccess"
+
+    # Check if the file exists
+    if [[ ! -f "$htaccess" ]]; then
+        echo "Error: .htaccess not found at $htaccess"
+        return 1
+    fi
+
+    # Logic: If 'Satisfy Any' exists, remove it. Otherwise, prepend it.
+    if grep -q "Satisfy Any" "$htaccess"; then
+        # Use sed to remove the line (works on macOS and Linux)
+        sed -i '/Satisfy Any/d' "$htaccess"
+        echo "Removed 'Satisfy Any' from $htaccess"
+    else
+        # Use a temporary file to prepend to avoid issues with some sed versions
+        echo -e "Satisfy Any\n$(cat "$htaccess")" > "$htaccess"
+        echo "Prepended 'Satisfy Any' to $htaccess"
+    fi
+}
+
+alias g='th'

@@ -1,18 +1,19 @@
-alias tm='~/dotfiles/scripts/tmux_session_manager.sh'
 
-alias v='nvm use 24 && nvim'
-alias vim='nvm use 24 && nvim'
+#### VIM & TMUX
+
+alias v='nvim'
+alias vim='nvim'
 alias nvim='nvm use 24 && nvim'
-alias pub='cat ~/.ssh/id_ed25519.pub'
+alias tm='~/dotfiles/scripts/tmux_session_manager.sh'
+alias tn='~/dotfiles/scripts/tmux_session_manager.sh --editor'
 alias e='tmuxifier load-window editor'
-alias c='batcat'
+alias aliases='vim ~/dotfiles/aliases.md'
 
-alias aliases='grep "alias" ~/.aliases | sed "s/alias //g" | sort'
+#### WORDPRESS
 
 alias db1='wp config set WP_DEBUG 1 && wp config set WP_DEBUG_DISPLAY 1'
 alias db0='wp config set WP_DEBUG 0 && wp config set WP_DEBUG_DISPLAY 0'
 
-# navigation
 wproot() {
     local cur_path=$(pwd)
     if [[ "$cur_path" =~ ^(/var/www/|/home/sites/)[^/]+ ]]; then
@@ -40,7 +41,6 @@ get_theme_path() {
     fi
 }
 
-# The th function now just uses the helper
 th() {
     local target; target=$(get_theme_path)
     if [[ -n "$target" ]]; then
@@ -73,6 +73,13 @@ s() {
     if [[ -d "$target" ]]; then cd "$target"; else echo "Supercontrol plugin not found"; fi
 }
 
+alias g='th'
+
+### GENERAL
+
+alias pub='cat ~/.ssh/id_ed25519.pub'
+alias c='batcat'
+
 sat() {
     local base; base=$(wproot) || return 1
     local htaccess="$base/web/.htaccess"
@@ -83,16 +90,13 @@ sat() {
         return 1
     fi
 
-    # Logic: If 'Satisfy Any' exists, remove it. Otherwise, prepend it.
     if grep -q "Satisfy Any" "$htaccess"; then
         # Use sed to remove the line (works on macOS and Linux)
         sed -i '/Satisfy Any/d' "$htaccess"
         echo "Removed 'Satisfy Any' from $htaccess"
     else
-        # Use a temporary file to prepend to avoid issues with some sed versions
         echo -e "Satisfy Any\n$(cat "$htaccess")" > "$htaccess"
         echo "Prepended 'Satisfy Any' to $htaccess"
     fi
 }
 
-alias g='th'
